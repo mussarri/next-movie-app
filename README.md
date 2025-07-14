@@ -2,6 +2,8 @@
 
 **Movie Explorer** is a modern, responsive web application that allows users to browse, search, and discover movies using real-time data from [TheMovieDB API](https://www.themoviedb.org/documentation/api).
 
+🔗 [Live Demo](https://movieapp-kappa-amber.vercel.app/)
+
 ## 🚀 Features
 
 - 🔍 **Live Search** – Instantly search for movies by title
@@ -31,10 +33,16 @@ git clone https://github.com/mussarri/next-movie-app.git
 cd next-movie-app
 npm install
 npm run dev
+```
+
+Create .env file and enter this values
+
+```
 NEXT_PUBLIC_TMDB_API_KEY=your_api_key_here
 API_KEY=your_api_key_here
+```
 
-🔗 Live Demo
-👉 View Live on Vercel
+🔗 [Live Demo](https://movieapp-kappa-amber.vercel.app/)
+
 
 
