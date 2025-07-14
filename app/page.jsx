@@ -3,9 +3,13 @@ import Hero from "./components/Hero/Hero.jsx";
 
 import MovieSlider from "./components/MovieSlider/MovieSlider.jsx";
 import PopularActors from "./components/PopularActors";
-import Random from "./components/Random"
+import Random from "./components/Random";
+export const metadata = {
+  title: "Next Movie App",
+  description: "",
+};
 
-export default async function Home() {  
+export default async function Home() {
   return (
     <>
       <Hero isHome={true} />
@@ -13,7 +17,7 @@ export default async function Home() {
       <Random />
       <MovieSlider list={"popular"} title={"Popular"} />
       <MovieSlider list={"top_rated"} title={"Top Rated"} />
-      
+
       <PopularActors />
     </>
   );

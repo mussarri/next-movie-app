@@ -4,10 +4,7 @@ import Header from "./components/Header.jsx";
 import "./globals.css";
 import { LanguageProvider } from "@/app/context/LangContext.tsx";
 
-export const metadata = {
-  title: "Next Movie App",
-  description: "",
-};
+
 
 export default function RootLayout({ children }) {
   return (
