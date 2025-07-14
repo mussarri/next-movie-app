@@ -13,17 +13,12 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.4",
-    "@tanstack/react-query": "^5.83.0",
-    "axios": "^1.4.0",
     "next": "13.4.13",
     "node-fetch": "^2.6.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-redux": "^9.2.0",
     "react-slick": "^0.29.0",
-    "redux": "^5.0.1",
-    "slick-carousel": "^1.8.1",
-    "zustand": "^5.0.6"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/node": "24.0.13",
