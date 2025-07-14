@@ -1,0 +1,33 @@
+.slider{
+  max-height:450px;
+  overflow: hidden;
+}
+
+.movie {
+  position: relative;
+  padding: 12px;
+}
+
+.movie > div {
+  display: none;
+  padding: 0 15px;
+}
+
+.movie:hover > div {
+  display: block;
+}
+
+.movie::after {
+  opacity: 1;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: #000;
+  opacity: 0.3;
+  position: absolute;
+}
+
+.movie:hover::after{
+    opacity: 0;
+}

@@ -1,0 +1,17 @@
+.hero {
+  background-image: url(https://cdn.pixabay.com/photo/2013/03/08/05/28/filmstrip-91434_1280.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #000;
+  opacity: 0.7;
+}

@@ -1,0 +1,21 @@
+.actor > div {
+  display: none;
+}
+.actor:hover > div {
+  display: block;
+}
+
+.actor::after {
+  opacity: 1;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: #000;
+  opacity: 0.3;
+  position: absolute;
+}
+
+.actor:hover::after {
+  opacity: 0;
+}
