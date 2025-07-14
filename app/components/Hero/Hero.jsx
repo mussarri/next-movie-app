@@ -6,7 +6,7 @@ function Hero({ isHome, title }) {
     <div className={style.hero + (isHome ? " h-144" : " h-96")}>
       <div className="absolute py-5 z-10 top-36 w-full">
         {isHome ? (
-          <div className="max-w-7xl px-14 mx-auto ">
+          <div className="max-w-6xl px-5 md:p-0 mx-auto ">
             <h1 className="text-5xl">Unlimited movies,</h1>
             <h1 className="text-5xl mt-3">TV shows, and more</h1>
             <h6 className="text-md mt-3">
@@ -23,7 +23,7 @@ function Hero({ isHome, title }) {
             </div>
           </div>
         ) : (
-          <div className="max-w-7xl px-14 mx-auto">
+          <div className="max-w-6xl px-5 md:p-0  mx-auto">
             <h1 className="text-6xl uppercase">{title}</h1>
           </div>
         )}

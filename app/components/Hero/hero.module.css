@@ -5,6 +5,7 @@
   background-position: bottom;
   width: 100%;
   position: relative;
+  overflow-y: hidden;
 }
 
 .hero::after {

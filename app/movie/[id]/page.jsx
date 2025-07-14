@@ -3,7 +3,8 @@ import fetch from "node-fetch";
 import React, { Suspense } from "react";
 import style from "./style.module.css";
 import { Rating } from "@mui/material";
-import Recommendations from "../../../app/components/Recommendations/Recommendations";
+import Recommendations from "@/app/components/Recommendations/Recommendations";
+import Similar from "@/app/components/Similar/index";
 import Link from "next/link";
 
 const options = {
@@ -37,15 +38,21 @@ async function page({ params, searchParams }) {
       `https://api.themoviedb.org/3/movie/${id}/recommendations?language=${lang}`,
       options
     ),
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}/similar?language=${lang}`,
+      options
+    ),
     fetch(`https://api.themoviedb.org/3/movie/${id}?language=${lang}`, options),
   ]);
 
-  const [list, movie] = await Promise.all([res[0].json(), res[1].json()]);
+  const [recommendations, similar, movie] = await Promise.all(
+    res.map((res) => res.json())
+  );
 
   return (
     <div>
       <div
-        className={style.hero + " h-144"}
+        className={style.hero + " h-144 overflow-hidden"}
         style={{
           backgroundImage: movie.backdrop_path
             ? `url(https://image.tmdb.org/t/p/w500${movie.backdrop_path})`
@@ -88,7 +95,10 @@ async function page({ params, searchParams }) {
         </div>
       </div>
       <Suspense fallback={<div>Loading...</div>}>
-        <Recommendations data={list} />
+        <Recommendations data={recommendations} />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Similar data={similar} />
       </Suspense>
     </div>
   );

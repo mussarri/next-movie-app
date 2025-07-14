@@ -6,23 +6,29 @@ import style from "../../components/MovieSlider/movieslider.module.css";
 import Hero from "../../components/Hero/Hero.jsx";
 import { options, titleize } from "../../../utils";
 
-const getMovieByCategory = async (id) => {
-  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}`;
+const getMovieByCategory = async (id, lang = "en") => {
+  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=${lang}&page=1&sort_by=popularity.desc&with_genres=${id}`;
   const res = await fetch(url, options);
   return res.json();
 };
 
-async function page({ params, searchParams }) {
+export async function generateMetadata({ params, searchParams }) {
+  const title = params.slug[0].toUpperCase() + params.slug.slice(1);
+  return {
+    title: title + " Movies",
+  };
+}
 
-  const data = await getMovieByCategory(searchParams.id);
+async function page({ params, searchParams }) {
+  const data = await getMovieByCategory(searchParams.id, searchParams.lang);
 
   return (
     <>
-      <Hero isHome={false} title={titleize(params.slug) + " Movies"} />
+      <Hero isHome={false} title={params.slug + " Movies"} />
       <div className="pt-10 max-w-6xl mx-auto">
-        <div className="flex flex-wrap ">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-0 ">
           {data.results.map((item) => (
-            <Link href={"/movie/" + item.id}>
+            <Link href={"/movie/" + item.id} className="w-full">
               <div className={style.movie}>
                 <Image
                   unoptimized

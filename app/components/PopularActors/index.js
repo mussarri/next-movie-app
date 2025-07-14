@@ -15,7 +15,7 @@ export const getPopularActors = async (lang) => {
 async function PopularActors() {
   const data = await getPopularActors("en");
   return (
-    <div className="px-14 mt-20 mx-auto max-w-7xl">
+    <div className="px-5 lg:px-14 mt-20 mx-auto max-w-7xl">
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
         <div className="col-span-2 pt-10 p-2">
           <div className="bg-gray-900 p-3 h-full flex flex-col gap-1">
@@ -39,11 +39,10 @@ async function PopularActors() {
         </div>
         {data?.results?.slice(0, 10).map((actor, i) => (
           <Link href={"/actors/" + actor.id}>
-            <div className={style.actor + " relative"}>
+            <div className={style.actor + ""}>
               <Image
                 unoptimized
-                width={200}
-                height={200}
+                fill
                 alt="image"
                 src={`https://image.tmdb.org/t/p/w300${actor.profile_path}`}
               />

@@ -1,3 +1,8 @@
+.actor{
+  aspect-ratio: 3/4;
+  position: relative;
+}
+
 .actor > div {
   display: none;
 }

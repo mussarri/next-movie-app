@@ -43,7 +43,7 @@ function MovieSlider({ list, title }) {
   }, []);
 
   return (
-    <div className={style.slider + " px-14 mt-10 mx-auto max-w-7xl"}>
+    <div className={style.slider + " px-5 lg:px-14 mt-10 mx-auto max-w-7xl"}>
       <h2 className="p-21 text-3xl">{title} Movies</h2>
       <div className="my-5 w-full">
         <Slider {...settings}>

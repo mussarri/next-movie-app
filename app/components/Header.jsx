@@ -55,10 +55,18 @@ function Header() {
     };
   }, [ref]);
 
+  const [query, setQuery] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+    router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+  };
+
   return (
     <header
       className={
-        "p-5 pr-10 h-[80px] lg:h-20 fixed top-0 z-40 w-full mx-auto transition-colors ease-in-out duration-300" +
+        "p-5 h-[80px] lg:h-20 fixed top-0 z-40 w-full mx-auto transition-colors ease-in-out duration-300" +
         (scrollPosition > 50 ? " bg-gray-900" : " bg-transparent")
       }
     >
@@ -100,14 +108,18 @@ function Header() {
               </div>
             )}
           </div>
-          <div className="flex items-center rounded-lg gap-5 bg-black/50 p-2 h-[40px]">
+          <form
+            onSubmit={handleSearch}
+            className="flex items-center rounded-lg gap-5 bg-black/50 p-2 h-[40px]"
+          >
             <SearchIcon />
             <input
               type="text"
               placeholder="Search"
-              className="py-2 rounded bg-transparent outline-none"
+              className="py-2 rounded bg-transparent outline-none hidden md:block"
+              onChange={(e) => setQuery(e.target.value)}
             />
-          </div>
+          </form>
         </div>
       </div>
     </header>

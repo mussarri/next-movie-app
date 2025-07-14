@@ -34,7 +34,7 @@ async function CategorySlider() {
 
   return (
     <>
-      <div className="mt-14 px-14 w-full">
+      <div className="mt-14 lg:px-14 w-full">
         <div className="flex flex-wrap">
           {data?.genres &&
             getMultipleRandom(data.genres, 6).map((item) => (

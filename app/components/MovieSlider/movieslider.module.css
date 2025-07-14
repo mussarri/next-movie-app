@@ -6,6 +6,7 @@
 .movie {
   position: relative;
   padding: 12px;
+  aspect-ratio: 3/4
 }
 
 .movie > div {
@@ -26,6 +27,7 @@
   background: #000;
   opacity: 0.3;
   position: absolute;
+  left: 0;
 }
 
 .movie:hover::after{

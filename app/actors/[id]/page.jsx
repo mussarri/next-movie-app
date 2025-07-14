@@ -33,7 +33,7 @@ export async function generateMetadata({ params, searchParams }) {
   };
 }
 
-async function page({ params }) {
+async function page({ params, searchParams }) {
   const lang = searchParams?.lang || "en";
   const [person, person_movies] = await getActor(params.id, lang);
 
