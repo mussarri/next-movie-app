@@ -2,6 +2,9 @@
   position: relative;
   padding: 12px;
   aspect-ratio: 3/4;
+  transition: all ease 300ms;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .movie > div {
@@ -11,6 +14,10 @@
 
 .movie:hover > div {
   display: block;
+}
+
+.movie:hover {
+  border-radius: 0px;
 }
 
 .movie::after {

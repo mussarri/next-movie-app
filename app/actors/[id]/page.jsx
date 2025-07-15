@@ -54,7 +54,7 @@ async function page({ params, searchParams }) {
       <div className="flex p-4 max-w-6xl mx-auto text-gray-400">
         <div className="flex flex-col gap-4">
           <p
-            className="p-1 mt-2 "
+            className="p-1 mt-2 text-sm sm:text-[16px]"
             style={{ maxHeight: 400, overflow: "scroll" }}
           >
             {Array.isArray(person?.biography)

@@ -8,8 +8,40 @@ import style from "./style.module.css";
 import { useMediaQuery } from "@mui/material";
 
 function Movie({ item, media_type = "movie" }) {
-  const md = useMediaQuery("(min-width:768px)");
+  const sm = useMediaQuery("(max-width:640px)");
+  return sm ? (
+    <Mobile item={item} media_type={media_type} />
+  ) : (
+    <Web item={item} media_type="movie" />
+  );
+}
 
+export default Movie;
+
+function Mobile({ item, media_type = "movie" }) {
+  return (
+    <Link
+      href={(media_type === "movie" ? "/movie/" : "/tv/") + item.id}
+      className="w-full"
+    >
+      <div
+        className="relative p-3 rounded-lg overflow-hidden"
+        style={{
+          aspectRatio: 2 / 3,
+        }}
+      >
+        <Image
+          unoptimized
+          fill
+          alt="image"
+          src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+        />
+      </div>
+    </Link>
+  );
+}
+
+function Web({ item, media_type = "movie" }) {
   return (
     <Link
       href={(media_type === "movie" ? "/movie/" : "/tv/") + item.id}
@@ -22,12 +54,7 @@ function Movie({ item, media_type = "movie" }) {
           alt="image"
           src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
         />
-        <div
-          className="absolute bottom-0 left-0 w-full py-5 px-2 bg-gradient-to-t from-black to-transparent pt-2 text-md"
-          style={{
-            display: "block",
-          }}
-        >
+        <div className="absolute bottom-0 left-0 w-full py-5 px-2 bg-gradient-to-t from-black to-transparent pt-2 text-md ">
           <p>{item.title || item.name}</p>
           <div className="flex justify-between text-lg">
             <p>{date(item.release_date || item.first_air_date || "")}</p>
@@ -41,5 +68,3 @@ function Movie({ item, media_type = "movie" }) {
     </Link>
   );
 }
-
-export default Movie;

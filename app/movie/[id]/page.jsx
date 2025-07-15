@@ -1,4 +1,4 @@
-import { date, titleize } from "../../../utils";
+import { date, options, titleize } from "../../../utils";
 import fetch from "node-fetch";
 import React, { Suspense } from "react";
 import style from "./style.module.css";
@@ -6,14 +6,6 @@ import { Rating } from "@mui/material";
 import Recommendations from "@/app/components/Recommendations/Recommendations";
 import Similar from "@/app/components/Similar/index";
 import Link from "next/link";
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: "Bearer " + process.env.NEXT_PUBLIC_API_KEY,
-  },
-};
 
 export async function generateMetadata({ params, searchParams }) {
   const id = params.id;
@@ -30,7 +22,6 @@ export async function generateMetadata({ params, searchParams }) {
 
 async function page({ params, searchParams }) {
   const id = params.id;
-  console.log(searchParams);
 
   const lang = searchParams?.lang || "en"; // default: en
   const res = await Promise.all([
@@ -66,14 +57,14 @@ async function page({ params, searchParams }) {
                 {titleize(movie.title) + " (" + date(movie.release_date) + ")"}
               </h1>
 
-              <p className="p-2 mt-3 text-3xl">
+              <div className="p-2 mt-3 text-3xl">
                 <Rating
                   name="read-only"
                   value={movie.vote_average / 2}
                   readOnly
                 />
                 <span className="ml-2">{movie.vote_average.toFixed(1)}</span>
-              </p>
+              </div>
               <p className="mt-3 p-2 text-gray-400 text-sm md:text-md">
                 {movie.overview}
               </p>

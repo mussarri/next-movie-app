@@ -2,12 +2,14 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Modal from "./modal";
+import { useMediaQuery } from "@mui/material";
 
 const index = ({ person_images, name }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeImg, setActiveImg] = useState(null);
   const [array, setArray] = useState([]);
-  console.log(person_images);
+
+  const sm = useMediaQuery("(max-width:640px)");
 
   useEffect(() => {
     setArray(person_images?.profiles?.map((item) => item.file_path));
@@ -34,7 +36,7 @@ const index = ({ person_images, name }) => {
         </span>
       </div>
       <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 overflow-scroll ">
-        {array.slice(0, 5)?.map((item, index) => (
+        {array.slice(0, sm ? 3 : 5)?.map((item, index) => (
           <div
             key={index}
             className="w-full h-auto relative bg-red-500 galery"

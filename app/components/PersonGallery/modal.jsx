@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import DownloadIcon from "@mui/icons-material/Download";
 
 const modal = ({ name, activeImg, array, closeModal }) => {
   const ref = useRef();
@@ -38,20 +39,22 @@ const modal = ({ name, activeImg, array, closeModal }) => {
 
   return (
     <div
-      className={`w-screen h-screen bg-black/80 top-[0px] left-0 fixed flex flex-col justify-center items-center overflow-hidden`}
+      className={`w-screen h-screen bg-black/80 top-[0px] left-0 fixed flex flex-col justify-center items-center overflow-hidden px-3`}
       style={{ zIndex: 1000 }}
     >
       <div
         className="w-full max-w-[700px] relative h-full my-10 flex justify-around items-center rounded-lg bg-black shadow-lg shadow-red-500 inset-shadow-blue-900"
         ref={ref}
       >
-        <button
-          onClick={() => closeModal()}
-          className="absolute top-5 right-5 z-20"
-        >
-          <CloseIcon />
-        </button>
-        <h2 className="absolute top-0 w-full text-center text-2xl font-semibold z-10 bg-black/50 rounded p-2 px-3 text-white">
+        <div className="absolute top-5 right-5 z-20 flex gap-3">
+          <button>
+            <DownloadIcon />
+          </button>
+          <button onClick={() => closeModal()}>
+            <CloseIcon />
+          </button>
+        </div>
+        <h2 className="absolute bottom-0 w-full text-center text-2xl font-semibold z-10 bg-black/50 rounded p-4 px-3 text-white">
           {name?.toUpperCase()}
         </h2>
         <button onClick={prev}>
@@ -59,7 +62,7 @@ const modal = ({ name, activeImg, array, closeModal }) => {
         </button>
         <div
           className="relative bg-red-100"
-          style={{ aspectRatio: "2/3", height: "100%" }}
+          style={{ aspectRatio: "2/3", width: "80%" }}
         >
           <Image
             unoptimized
