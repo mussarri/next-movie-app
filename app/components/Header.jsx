@@ -58,11 +58,11 @@ function Header() {
   return (
     <header
       className={
-        "px-3 py-5 sm:p-5 h-[80px] lg:h-20 fixed top-0 z-40 w-full mx-auto transition-colors ease-in-out duration-300" +
+        "py-5 h-[80px] lg:h-20 fixed top-0 z-40 w-full mx-auto transition-colors ease-in-out duration-300" +
         (scrollPosition > 50 ? " bg-gray-900" : " bg-transparent")
       }
     >
-      <div className="flex justify-between items-center lg:max-w-6xl mx-auto">
+      <div className="flex justify-between items-center px-3 md:px-5 max-w-6xl mx-auto">
         <Link href={"/"}>
           <div className="logo text-3xl text-red-600 font-bold">MOVIE APP</div>
         </Link>

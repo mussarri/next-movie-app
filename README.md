@@ -10,7 +10,6 @@
 - 🎞️ **Browse by Categories** – View trending, popular, and top-rated films
 - 📄 **Movie Detail Pages** – See posters, summaries, genres, release dates, and ratings
 - 🎭 **Genre-Based Filtering** – Filter movies by genre (e.g. Action, Drama, Comedy)
-- 🌙 **Dark/Light Mode** – Switch between themes for a better UX _(optional)_
 - ⚡ **Fully Responsive** – Optimized for desktop and mobile devices
 
 ## 🛠️ Tech Stack
@@ -42,7 +41,7 @@ NEXT_PUBLIC_TMDB_API_KEY=your_api_key_here
 API_KEY=your_api_key_here
 ```
 
-🔗 [Live Demo](https://movieapp-kappa-amber.vercel.app/)
+🔗 [Live Demo](https://next-movie-app-sigma.vercel.app/)
 
 
 
