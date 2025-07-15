@@ -4,7 +4,6 @@ import fetch from "node-fetch";
 import React from "react";
 import style from "./style.module.css";
 import { options } from "../../../utils";
-import { useSearchParams } from "next/navigation";
 
 export const getPopularActors = async (lang) => {
   const url = `https://api.themoviedb.org/3/person/popular?language=${lang}&page=1`;
@@ -38,7 +37,7 @@ async function PopularActors() {
           </div>
         </div>
         {data?.results?.slice(0, 10).map((actor, i) => (
-          <Link href={"/actors/" + actor.id}>
+          <Link href={"/actors/" + actor.id} key={i}>
             <div className={style.actor + ""}>
               <Image
                 unoptimized

@@ -5,15 +5,15 @@ import fetch from "node-fetch";
 import React from "react";
 import Movie from "../../components/Movie";
 import { options } from "../../../utils";
-import { log } from "node:console";
-import MovieSlider from "../../components/MovieSlider/MovieSlider";
+import PersonGallery from "../../components/PersonGallery";
 
 const getActor = async (person_id, lang) => {
   const url = `https://api.themoviedb.org/3/person/${person_id}?language=${lang}`;
   const url2 = `https://api.themoviedb.org/3/person/${person_id}/movie_credits?language=${lang}`;
+  const url3 = `https://api.themoviedb.org/3/person/${person_id}/images?language=${lang}`;
 
   const lists = await Promise.all(
-    [url, url2].map(async (url) => {
+    [url, url2, url3].map(async (url) => {
       const res = await fetch(url, options);
       return res.json();
     })
@@ -26,7 +26,12 @@ export async function generateMetadata({ params, searchParams }) {
   const id = params.id;
   const lang = searchParams?.lang || "en"; // default: en
 
-  const actor = getActor(id, lang);
+  const res = await fetch(
+    `https://api.themoviedb.org/3/person/${id}?language=${lang}`,
+    options
+  );
+  const actor = await res.json();
+
   return {
     title: actor.name,
     description: actor.biography,
@@ -35,50 +40,65 @@ export async function generateMetadata({ params, searchParams }) {
 
 async function page({ params, searchParams }) {
   const lang = searchParams?.lang || "en";
-  const [person, person_movies] = await getActor(params.id, lang);
+  const [person, person_movies, person_images] = await getActor(
+    params.id,
+    lang
+  );
 
   return (
     <div>
       <Hero isHome={false} title={person?.name} />
-      <div className="mt-10 max-w-6xl mx-auto text-gray-400">
-        <h2 className="p-1 text-3xl text-white">Biograpyh</h2>
-        <div className="float-right p-2 bg-gray-900 rounded ">
-          <Image
-            width={300}
-            height={500}
-            unoptimized
-            alt="image"
-            src={`https://image.tmdb.org/t/p/w300${person?.profile_path}`}
-          />
-          <p className="mt-3 text-lg text-right">{person?.place_of_birth}</p>
-          <p className="mt-1 text-lg text-right">
-            Birthday: {person?.birthday}
+      <h2 className="px-4 mt-10 max-w-6xl mx-auto text-3xl text-white">
+        Biograpyh
+      </h2>
+      <div className="flex p-4 max-w-6xl mx-auto text-gray-400">
+        <div className="flex flex-col gap-4">
+          <p
+            className="p-1 mt-2 "
+            style={{ maxHeight: 400, overflow: "scroll" }}
+          >
+            {Array.isArray(person?.biography)
+              ? person?.biography.split("\n").map((item, idx) => {
+                  return (
+                    <React.Fragment key={idx}>
+                      {item}
+                      <br />
+                    </React.Fragment>
+                  );
+                })
+              : person?.biography}
           </p>
+          {person_images?.profiles.length > 0 && (
+            <PersonGallery person_images={person_images} name={person?.name} />
+          )}
         </div>
-        <p className="p-1 mt-2" style={{ minHeight: 600 }}>
-          {Array.isArray(person?.biography)
-            ? person?.biography.split("\n").map((item, idx) => {
-                return (
-                  <React.Fragment key={idx}>
-                    {item}
-                    <br />
-                  </React.Fragment>
-                );
-              })
-            : person?.biography}
-        </p>
+        <div className="min-w-[200px] sm:min-w-[300px]">
+          <div className="p-2 bg-gray-900 rounded ">
+            <Image
+              width={300}
+              height={500}
+              unoptimized
+              alt="image"
+              src={`https://image.tmdb.org/t/p/w300${person?.profile_path}`}
+            />
+            <p className="mt-3 text-lg text-right">{person?.place_of_birth}</p>
+            <p className="mt-1 text-lg text-right">
+              Birthday: {person?.birthday}
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="mt-10 max-w-6xl mx-auto">
+      <div className="mt-10  p-4  max-w-6xl mx-auto">
         <div className="p-1 pr-5 flex justify-between">
           <h2 className="text-3xl text-white">Movies</h2>
         </div>
-        <div className="mt-3 flex flex-wrap">
+        <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
           {person_movies?.cast
             .filter((item) => item.poster_path)
             .sort((a, b) => b.vote_average - a.vote_average)
             .map((movie) => (
-              <Movie item={movie} />
+              <Movie item={movie} key={movie.id} />
             ))}
         </div>
       </div>

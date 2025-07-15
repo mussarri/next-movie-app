@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import style from "./movieslider.module.css";
 
 import Movie from "../Movie";
+import { options } from "@/utils";
 
 const settings = {
   dots: false,
@@ -21,7 +22,6 @@ const settings = {
   variableWidth: false,
   arrows: false,
   pauseOnHover: false,
-  variableWidth: true,
 };
 
 function MovieSlider({ list, title }) {
@@ -29,13 +29,6 @@ function MovieSlider({ list, title }) {
 
   useEffect(() => {
     const url = `https://api.themoviedb.org/3/movie/${list}?language=en&page=1`;
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: "Bearer " + process.env.NEXT_PUBLIC_API_KEY,
-      },
-    };
 
     fetch(url, options)
       .then((res) => res.json())
@@ -48,12 +41,16 @@ function MovieSlider({ list, title }) {
       <div className="my-5 w-full">
         <Slider {...settings}>
           {data?.results
-            ? data.results.map((item) => <Movie item={item} />)
-            : Array(10)
+            ? data.results.map((item) => (
+                <div className="px-3 ">
+                  <Movie key={item.id} item={item} />
+                </div>
+              ))
+            : Array(20)
                 .fill(0)
                 .map((item) => (
                   <div className="p-4">
-                    <div className="h-48">Loading</div>
+                    <div className="h-48">Loading...</div>
                   </div>
                 ))}
         </Slider>

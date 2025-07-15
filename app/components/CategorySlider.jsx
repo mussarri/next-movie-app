@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import fetch from "node-fetch";
-import { getMultipleRandom } from "../../utils";
+import { getMultipleRandom, options } from "../../utils";
 
 const settings = {
   dots: false,
@@ -18,13 +18,7 @@ const settings = {
 
 const getCategories = async () => {
   const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: "Bearer " + process.env.API_KEY,
-    },
-  };
+
   const res = await fetch(url, options);
   return res.json();
 };
@@ -37,8 +31,8 @@ async function CategorySlider() {
       <div className="mt-14 lg:px-14 w-full">
         <div className="flex flex-wrap">
           {data?.genres &&
-            getMultipleRandom(data.genres, 6).map((item) => (
-              <div className="h-13 px-3 py-1 mx-auto">
+            getMultipleRandom(data.genres, 6).map((item, index) => (
+              <div className="h-13 px-3 py-1 mx-auto" key={index}>
                 <Link
                   href={{
                     pathname: "/category/" + item.name.toLowerCase(),

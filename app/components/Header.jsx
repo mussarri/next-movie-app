@@ -13,7 +13,6 @@ function Header() {
   const ref = useRef();
 
   const searchParams = useSearchParams();
-  console.log(searchParams);
 
   const lang = searchParams.get("lang") || "en"; // default: en
 
@@ -81,7 +80,12 @@ function Header() {
               className="flex gap-1 cursor-pointer"
               onClick={() => setIsOpen(!isOpen)}
             >
-              <Image src={"/svg/" + lang + ".svg"} width={20} height={20} />
+              <Image
+                src={"/svg/" + lang + ".svg"}
+                width={20}
+                height={20}
+                alt=""
+              />
               <KeyboardArrowDownIcon />
             </div>
             {isOpen && (

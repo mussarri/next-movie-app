@@ -6,7 +6,7 @@
 .movie {
   position: relative;
   padding: 12px;
-  aspect-ratio: 3/4
+  aspect-ratio: 3/4;
 }
 
 .movie > div {

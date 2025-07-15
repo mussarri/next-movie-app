@@ -151,4 +151,6 @@ main {
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
-
+.galery:hover > div.overlay {
+  display: none;
+}
