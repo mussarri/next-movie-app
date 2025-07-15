@@ -60,7 +60,7 @@ async function page({ params, searchParams }) {
         }}
       >
         <div className="absolute py-5  z-10 w-full">
-          <div className="p-4 lg:p-0 max-w-6xl mx-auto">
+          <div className="p-3 sm:p-5 lg:p-0 max-w-6xl mx-auto">
             <div className="max-w-xl">
               <h1 className="text-5xl">
                 {titleize(movie.title) + " (" + date(movie.release_date) + ")"}
@@ -74,10 +74,13 @@ async function page({ params, searchParams }) {
                 />
                 <span className="ml-2">{movie.vote_average.toFixed(1)}</span>
               </p>
-              <p className="mt-3 p-2 text-gray-400">{movie.overview}</p>
+              <p className="mt-3 p-2 text-gray-400 text-sm md:text-md">
+                {movie.overview}
+              </p>
               <div className="m-2 flex gap-2">
-                {movie.genres.map((item) => (
+                {movie.genres.map((item, idx) => (
                   <Link
+                    key={idx}
                     href={`/category/${item.name.toLowerCase()}?id=${item.id}`}
                     className="p-1 px-3 bg-slate-600 rounded-xl text-xs"
                   >

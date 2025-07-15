@@ -72,11 +72,11 @@ async function page({ params, searchParams }) {
             <PersonGallery person_images={person_images} name={person?.name} />
           )}
         </div>
-        <div className="min-w-[200px] sm:min-w-[300px]">
-          <div className="p-2 bg-gray-900 rounded ">
+        <div className="min-w-[200px] sm:min-w-[300px] hidden md:block">
+          <div className="p-2 bg-gray-900 rounded">
             <Image
               width={300}
-              height={500}
+              height={200}
               unoptimized
               alt="image"
               src={`https://image.tmdb.org/t/p/w300${person?.profile_path}`}

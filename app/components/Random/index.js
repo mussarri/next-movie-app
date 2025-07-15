@@ -18,7 +18,7 @@ async function index() {
 
   return (
     <>
-      <div className="my-10 p-5 lg:p-14 max-w-7xl w-full mx-auto">
+      <div className="my-10 p-3 sm:p-5 max-w-6xl w-full mx-auto">
         <h1 className="text-3xl">Editor's Choice</h1>
         {movie && (
           <div className="pt-5 flex gap-5 w-full flex-col lg:flex-row">
@@ -34,9 +34,9 @@ async function index() {
               </div>
             </Link>
             <div className="text-gray-500 max-w-3xl p-2 flex flex-col">
-              <h1 className="text-2xl">
+              <Link href={"/movie/" + movie.id} className="text-2xl">
                 {movie.title + " (" + movie.release_date.split("-")[0] + ")"}
-              </h1>
+              </Link>
               <p className="mt-2 max-w-2xl">{movie.overview}</p>
               <p className="mt-2">
                 Language: {movie.original_language.toUpperCase()}

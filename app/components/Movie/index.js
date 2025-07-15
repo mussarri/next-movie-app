@@ -1,10 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { use } from "react";
 import { date } from "../../../utils/index";
 import style from "./style.module.css";
+import { useMediaQuery } from "@mui/material";
 
 function Movie({ item, media_type = "movie" }) {
+  const md = useMediaQuery("(min-width:768px)");
+
   return (
     <Link
       href={(media_type === "movie" ? "/movie/" : "/tv/") + item.id}
@@ -17,7 +22,12 @@ function Movie({ item, media_type = "movie" }) {
           alt="image"
           src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
         />
-        <div className="absolute bottom-0 left-0 w-full py-5 px-2 bg-gradient-to-t from-black to-transparent pt-2 text-md">
+        <div
+          className="absolute bottom-0 left-0 w-full py-5 px-2 bg-gradient-to-t from-black to-transparent pt-2 text-md"
+          style={{
+            display: "block",
+          }}
+        >
           <p>{item.title || item.name}</p>
           <div className="flex justify-between text-lg">
             <p>{date(item.release_date || item.first_air_date || "")}</p>

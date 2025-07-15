@@ -2,12 +2,10 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Modal from "./modal";
-import Link from "next/link";
 
 const index = ({ person_images, name }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeImg, setActiveImg] = useState(null);
-  const [scroll, setScroll] = useState(0);
   const [array, setArray] = useState([]);
   console.log(person_images);
 
@@ -39,15 +37,17 @@ const index = ({ person_images, name }) => {
         {array.slice(0, 5)?.map((item, index) => (
           <div
             key={index}
-            className="w-full aspect-ratio-w-3 aspenct-ratio-h-4 relative bg-red-500 galery"
+            className="w-full h-auto relative bg-red-500 galery"
+            style={{
+              aspectRatio: 3 / 4,
+            }}
           >
             <div className="overlay absolute top-0 left-0 w-full h-full bg-black/50"></div>
             <Image
               unoptimized
               alt=""
               src={"https://image.tmdb.org/t/p/w300" + item}
-              width={300}
-              height={300}
+              fill
               className="cursor-pointer"
               onClick={() => {
                 openModal(item);

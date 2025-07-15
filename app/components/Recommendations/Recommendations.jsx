@@ -9,8 +9,8 @@ const Recommendations = ({ data }) => {
       <div className="pt-10 max-w-6xl mx-auto">
         <h2 className="text-2xl pl-4">Recommended Movies</h2>
         <div className="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5">
-          {data.results.map((item) => (
-            <Link href={"/movie/" + item.id} className="w-full ">
+          {data.results.map((item, idx) => (
+            <Link key={idx} href={"/movie/" + item.id} className="w-full ">
               <div className={style.movie}>
                 <Image
                   unoptimized

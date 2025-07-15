@@ -14,8 +14,8 @@ export const getPopularActors = async (lang) => {
 async function PopularActors() {
   const data = await getPopularActors("en");
   return (
-    <div className="px-5 lg:px-14 mt-20 mx-auto max-w-7xl">
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+    <div className="px-3 sm:px-5 mt-20 mx-auto max-w-6xl">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
         <div className="col-span-2 pt-10 p-2">
           <div className="bg-gray-900 p-3 h-full flex flex-col gap-1">
             <p className="text-5xl text-red-600">Top 10</p>

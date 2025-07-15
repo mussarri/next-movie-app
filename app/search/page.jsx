@@ -54,14 +54,16 @@ const page = async ({ params, searchParams }) => {
         {movies.length > 0 && (
           <div className="pt-10 max-w-6xl mx-auto">
             <h2 className="text-2xl pl-5">Results</h2>
-            <div className="flex flex-wrap mt-5">
-              {movies?.map((movie) => (
-                <Movie item={movie} />
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5">
+              {movies?.map((movie, idx) => (
+                <Movie item={movie} key={idx} />
               ))}
               {tv.length > 0 &&
-                tv?.map((item) => <Movie item={item} media_type={"tv"} />)}
+                tv?.map((item, idx) => (
+                  <Movie key={idx} item={item} media_type={"tv"} />
+                ))}
               {persons.length > 0 &&
-                persons?.map((item) => <Person item={item} />)}
+                persons?.map((item, idx) => <Person key={idx} item={item} />)}
             </div>
           </div>
         )}
