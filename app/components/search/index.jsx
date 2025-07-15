@@ -3,6 +3,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 const index = () => {
   const searchParams = useSearchParams();
@@ -62,6 +63,11 @@ const index = () => {
       )}
       {isOpen && !sm && (
         <div className="w-screen h-screen bg-black fixed top-0 left-0 p-3">
+          <div className="w-full text-right">
+            <button onClick={() => setIsOpen(false)}>
+              <CloseIcon />
+            </button>
+          </div>
           <input
             type="text"
             placeholder="Search"

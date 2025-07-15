@@ -24,10 +24,6 @@ export async function generateMetadata({ params, searchParams }) {
 async function page() {
   const data = await getPopularActors();
 
-  const submitForm = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div>
       <Hero isHome={false} title={"actors"} />
@@ -38,7 +34,7 @@ async function page() {
         >
           Search
         </label>
-        <form action={submitForm} class="relative">
+        <form class="relative">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg
               class="w-4 h-4 text-gray-500 dark:text-gray-400"
