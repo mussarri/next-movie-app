@@ -2,7 +2,7 @@
 
 **Movie Explorer** is a modern, responsive web application that allows users to browse, search, and discover movies using real-time data from [TheMovieDB API](https://www.themoviedb.org/documentation/api).
 
-🔗 [Live Demo](https://movieapp-kappa-amber.vercel.app/)
+🔗 [Live Demo](https://next-movie-app-sigma.vercel.app/)
 
 ## 🚀 Features
 
