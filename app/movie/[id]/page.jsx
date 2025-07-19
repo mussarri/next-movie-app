@@ -51,7 +51,7 @@ async function page({ params, searchParams }) {
         }}
       >
         <div className="absolute py-5  z-10 w-full">
-          <div className="p-3 sm:p-5 lg:p-0 max-w-6xl mx-auto">
+          <div className="p-3 sm:p-5 max-w-6xl mx-auto">
             <div className="max-w-xl">
               <h1 className="text-5xl">
                 {titleize(movie.title) + " (" + date(movie.release_date) + ")"}

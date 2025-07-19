@@ -59,7 +59,7 @@ function Web({ item, media_type = "movie" }) {
           <div className="flex justify-between text-lg">
             <p>{date(item.release_date || item.first_air_date || "")}</p>
             <p>
-              {item.vote_average.toFixed(1)}
+              {item.vote_average?.toFixed(1)}
               <span className="text-xs">/10</span>
             </p>
           </div>

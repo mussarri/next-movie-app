@@ -8,7 +8,9 @@ const Recommendations = ({ data }) => {
   return (
     <div>
       <div className="pt-10 max-w-6xl mx-auto">
-        <h2 className="text-2xl pl-4">Recommended Movies</h2>
+        <div className=" pl-4 flex justify-between items-end">
+          <h2 className="text-2xl">Recommended Movies</h2>
+        </div>
         <div className="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5">
           {data.results.map((item, idx) => (
             <Movie item={item} key={idx} />

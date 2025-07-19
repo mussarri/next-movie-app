@@ -31,11 +31,25 @@ const modal = ({ name, activeImg, array, closeModal }) => {
   };
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.querySelector("html").style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "visible";
+      document.querySelector("html").style.overflow = "visible";
     };
   }, []);
+
+  const handleDownload = async () => {
+    const res = await fetch(
+      "https://image.tmdb.org/t/p/w300" + array[activeIndex]
+    );
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = name + ".jpg";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div
@@ -43,11 +57,11 @@ const modal = ({ name, activeImg, array, closeModal }) => {
       style={{ zIndex: 1000 }}
     >
       <div
-        className="w-full max-w-[700px] relative h-full my-10 flex justify-around items-center rounded-lg bg-black shadow-lg shadow-red-500 inset-shadow-blue-900"
+        className="w-full max-w-[700px] relative h-[100%] my-10 flex justify-around items-center rounded-lg bg-black shadow-lg shadow-red-500 inset-shadow-blue-900"
         ref={ref}
       >
         <div className="absolute top-5 right-5 z-20 flex gap-3">
-          <button>
+          <button onClick={handleDownload}>
             <DownloadIcon />
           </button>
           <button onClick={() => closeModal()}>
@@ -62,7 +76,7 @@ const modal = ({ name, activeImg, array, closeModal }) => {
         </button>
         <div
           className="relative bg-red-100"
-          style={{ aspectRatio: "2/3", width: "80%" }}
+          style={{ aspectRatio: "2/3", height: "100%" }}
         >
           <Image
             unoptimized

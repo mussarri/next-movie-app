@@ -3,7 +3,7 @@ import Hero from "../../components/Hero/Hero";
 import Image from "next/image";
 import fetch from "node-fetch";
 import React from "react";
-import Movie from "../../components/Movie";
+import PersonMovies from "../../components/PersonMovies";
 import { options } from "../../../utils";
 import PersonGallery from "../../components/PersonGallery";
 
@@ -89,19 +89,7 @@ async function page({ params, searchParams }) {
         </div>
       </div>
 
-      <div className="mt-10  p-4  max-w-6xl mx-auto">
-        <div className="p-1 pr-5 flex justify-between">
-          <h2 className="text-3xl text-white">Movies</h2>
-        </div>
-        <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-          {person_movies?.cast
-            .filter((item) => item.poster_path)
-            .sort((a, b) => b.vote_average - a.vote_average)
-            .map((movie) => (
-              <Movie item={movie} key={movie.id} />
-            ))}
-        </div>
-      </div>
+      <PersonMovies person_movies={person_movies} />
     </div>
   );
 }
